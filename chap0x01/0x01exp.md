@@ -12,8 +12,8 @@
 - Ubuntu 20.04 Server 64bit
 ---
 ## 三、实验步骤
-
-### 1.  手动安装Ubuntu20.04
+### 1⃣️配置无人值守安装iso并在Virtualbox中完成自动化安装
+#### 1.  手动安装Ubuntu20.04
 
 **用户名**：cuc
 
@@ -28,7 +28,7 @@ ssh cuc@192.168.56.103
 
 ![](./img/ssh-login.jpeg)
 
-### 2. 配置SSH免密登录
+#### 2. 配置SSH免密登录
 1. ssh-keygen生成公钥-私钥对：
 ```shell
 ssh-keygen
@@ -46,7 +46,7 @@ ssh-copy-id -i/.ssh/id_rsa.pub cuc@192.168.56.103
 ![](./img/ssh-copyid0.jpeg)
 ![](./img/ssh-copyid1.jpeg)
 ---
-### 3. 定制无人值守安装镜像iso文件
+#### 3. 定制无人值守安装镜像iso文件
 
 
 1. ssh登陆虚拟机创建一个工作目录用于克隆光盘内容
@@ -99,7 +99,7 @@ sudo scp cuc@192.168.56.103:~/clone/091-init.iso ./
 ![](./img/new-disk.jpeg)
 ---
 
-### 4. 激动人心的无人值守安装时刻
+#### 4. 激动人心的无人值守安装时刻
 启动虚拟机，待命令行出现下述内容：
 > Continue with autoinstall? (yes|no)
 
@@ -108,9 +108,51 @@ sudo scp cuc@192.168.56.103:~/clone/091-init.iso ./
 
 ![](./img/auto-run.GIF)
 
+### 2⃣️Virtualbox安装Ubuntu后新添加的网卡实现系统开机自动启用和自动获取IP
+#### 1. 为安装好的虚拟机手动添加一块新的网卡，并设置为`host-only`
+#### 2. 开机并显示所有网络接口
+```shell
+ifconfig a
+```
+刚才添加的网卡已存在
+![](./img/show-net.jpeg)
+#### 3. 查看当前系统的网络配置情况
+```shell
+ifconfig 
+```
+刚才添加的网卡并未分配ip地址
+![](./img/show-config.jpeg)
+#### 4. 手动添加新网卡
+```shell
+sudo vim /etc/netplan/00-installer-config.yaml
+```
+![](./img/add-net.jpeg)
+#### 5. 应用修改后的网络配置
+```shell
+sudo netplan apply
+```
+#### 5. 查看网卡是否添加成功
+```shell
+ifconfig
+```
+确认新网卡已自动分配ip地址
+![](./img/apply&check.jpeg)
+
 ---
+
+### 3⃣️使用sftp在虚拟机和宿主机之间传输文件（一般方法）
+- **把本地文件传输到远程主机**
+```shell
+scp [本地文件] [用户名@远程主机IP地址:/目标文件夹]
+```
+- **把远程文件传输到本地主机**
+```shell
+scp [用户名@远程主机IP地址:/源文件] [本地目录]
+```
+具体应用已体现在上述实验过程中
 ## 四、实验过程中的问题与解决方案
-- 使用sftp在宿主机与虚拟机之间进行文件传输时，宿主机中需使用**sudo**启用管理员身份执行指令，否则会报**Permission denied**禁止传输等操作。
+- 使用sftp在宿主机与虚拟机之间进行文件传输时，宿主机中需使用**sudo**启用管理员身份执行指令，否则会报**Permission denied**禁止传输等操作。 
+- 在手动修改yaml文件并保存后应执行``netplan apply``命令应用修改,否则将看不到刚才的修改内容。
 ---
 ## 五、参考文献
 - <a href="https://www.ssh.com/ssh/keygen/"> How to use ssh-keygen to generate a new SSH key</a>
