@@ -1,16 +1,16 @@
 
 # 实验一 Linux基础
----
+
 ## 一、实验目的
 - 配置无人值守安装iso并在Virtualbox中完成自动化安装。 
 - Virtualbox安装Ubuntu后新添加的网卡实现系统开机自动启用和自动获取IP
 - 使用sftp在虚拟机和宿主机之间传输文件
----
+
 ## 二、实验环境
 - MacOS Catalina 10.15.7
 - Virtualbox
 - Ubuntu 20.04 Server 64bit
----
+
 ## 三、实验步骤
 ### 1⃣️配置无人值守安装iso并在Virtualbox中完成自动化安装
 #### 1.  手动安装Ubuntu20.04
@@ -26,7 +26,7 @@
 ssh cuc@192.168.56.103
 ```
 
-![](./img/ssh-login.jpeg)
+![](./img/ssh-login.gif)
 
 #### 2. 配置SSH免密登录
 1. ssh-keygen生成公钥-私钥对：
@@ -37,9 +37,9 @@ ssh-keygen
 ![](./img/keygen.jpeg)
 
 
-2. ssh-copy-id配置免密登陆
+2. ssh-copy-id配置免密登录
 ```shell
-ssh-copy-id -i/.ssh/id_rsa.pub cuc@192.168.56.103
+ssh-copy-id -i ~/.ssh/id_rsa.pub cuc@192.168.56.103
 ```
 
 
@@ -49,7 +49,7 @@ ssh-copy-id -i/.ssh/id_rsa.pub cuc@192.168.56.103
 #### 3. 定制无人值守安装镜像iso文件
 
 
-1. ssh登陆虚拟机创建一个工作目录用于克隆光盘内容
+1. ssh登录虚拟机创建一个工作目录用于克隆光盘内容
 ```shell
   mkdir clone
 
@@ -66,7 +66,7 @@ ssh-copy-id -i/.ssh/id_rsa.pub cuc@192.168.56.103
 
 3. 获取手动安装Ubuntu后得到的初始「自动配置描述文件」，并将其从虚拟机中**利用sftp方式传输到宿主机中**
 ```shell
-sudo scp cuc@192.168.56.103:/var/log/installer/auoinstaller-userudata ./
+sudo scp cuc@192.168.56.103:/var/log/installer/autoinstaller-user-data ./
 ```
 
 ![](./img/scp-to-host.jpeg)
@@ -106,7 +106,7 @@ sudo scp cuc@192.168.56.103:~/clone/091-init.iso ./
 **手动输入yes**并单击回车后静候20分钟左右，程序便自动完成系统安装与重启进入系统的可用状态,完成✅
 ~~有亿点模糊~~
 
-![](./img/auto-run.GIF)
+![](./img/autorunrun.gif)
 
 ### 2⃣️Virtualbox安装Ubuntu后新添加的网卡实现系统开机自动启用和自动获取IP
 #### 1. 为安装好的虚拟机手动添加一块新的网卡，并设置为`host-only`
@@ -138,30 +138,34 @@ ifconfig
 确认新网卡已自动分配ip地址
 ![](./img/apply&check.jpeg)
 
----
+
 
 ### 3⃣️使用sftp在虚拟机和宿主机之间传输文件（一般方法）
+- **简化版scp命令概要**
+```shell
+scp [OPTIONS] sourse target
+```
 - **把本地文件传输到远程主机**
 ```shell
-scp [本地文件] [用户名@远程主机IP地址:/目标文件夹]
+scp 本地文件 [用户名@]远程主机IP地址:[目标文件路径]
 ```
 - **把远程文件传输到本地主机**
 ```shell
-scp [用户名@远程主机IP地址:/源文件] [本地目录]
+scp [用户名@]远程主机IP地址:源文件 [本地路径]
 ```
 具体应用已体现在上述实验过程中
 ## 四、实验过程中的问题与解决方案
-- 使用sftp在宿主机与虚拟机之间进行文件传输时，宿主机中需使用**sudo**启用管理员身份执行指令，否则会报**Permission denied**禁止传输等操作。 
+- 使用scp在宿主机与虚拟机之间进行文件传输时报**Permission denied**，宿主机中需使用**sudo**启用管理员身份授予当前用户操作目录与文件的权限。 
 - 在手动修改yaml文件并保存后应执行``netplan apply``命令应用修改,否则将看不到刚才的修改内容。
----
+
 ## 五、参考文献
-- <a href="https://www.ssh.com/ssh/keygen/"> How to use ssh-keygen to generate a new SSH key</a>
-- <a href="https://www.ssh.com/ssh/copy-id"> ssh-copy-id for coping SSH keys to server</a>
-- <a href="https://blog.csdn.net/feinifi/article/details/78213297" target="_blank">ssh-keygen和ssh-copy-id实现免密登录远程主机</a>
-- <a href="https://www.cnblogs.com/storyawine/p/13359393.html"> sudo的介绍及基本用法</a>
-- <a href="https://www.ssh.com/ssh/sftp/" target="_blank">SFTP File Transfer Protocol - get SFTP client & server</a>
-- <a href="https://lmlxj.blog.csdn.net/article/details/80839322?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.control&dist_request_id=&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.control" target="_blank"> Mac如何使用SSH远程连接linux及使用SFTP进行文件上传、下载</a>
-- <a href="https://help.ubuntu.com/community/InstallCDCustomization" target="_blank"> Ubuntu 20.04 + Autoinstall + VirtualBox</a>
-- <a href="https://c4pr1c3.gitee.io/linuxsysadmin/exp/chap0x01/cd-rom/nocloud/user-data" target="_blank"> 老师提供的可用配置文件user-data</a>
-- <a href="https://c4pr1c3.gitee.io/linuxsysadmin/cloud-init.md" target="_blank"> 第八章Cloud-init内容</a>
-- <a href="https://wiki.debian.org/genisoimage" target="_blank"> genisoimage用法</a>
+- *ssh-keygen - Generate a New SSH Key* <a href="https://www.ssh.com/ssh/keygen/"> （https://www.ssh.com/ssh/keygen/）</a>
+- *ssh-copy-id* <a href="https://www.ssh.com/ssh/copy-id">  (https://www.ssh.com/ssh/copy-id)</a>
+- 《ssh-keygen和ssh-copy-id实现免密登录远程主机》<a href="https://blog.csdn.net/feinifi/article/details/78213297" target="_blank">(https://blog.csdn.net/feinifi/article/details/78213297)</a>
+- 《sudo的介绍及基本用法》<a href="https://www.cnblogs.com/storyawine/p/13359393.html"> (https://www.cnblogs.com/storyawine/p/13359393.html)</a>
+- *SFTP File Transfer Protocol - get SFTP client & server*<a href="https://www.ssh.com/ssh/sftp/" target="_blank"> （https://www.ssh.com/ssh/sftp/）</a>
+- 《Mac如何使用SSH远程连接linux及使用SFTP进行文件上传、下载》<a href="https://lmlxj.blog.csdn.net/article/details/80839322?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.control&dist_request_id=&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.control" target="_blank"> (https://lmlxj.blog.csdn.net/article/details/80839322?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.control&dist_request_id=&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.control)</a>
+- *InstallCDCustomization*<a href="https://help.ubuntu.com/community/InstallCDCustomization" target="_blank"> (https://help.ubuntu.com/community/InstallCDCustomization)</a>
+- 《老师提供的可用配置文件user-data》<a href="https://c4pr1c3.gitee.io/linuxsysadmin/exp/chap0x01/cd-rom/nocloud/user-data" target="_blank"> (https://c4pr1c3.gitee.io/linuxsysadmin/exp/chap0x01/cd-rom/nocloud/user-data)</a>
+- 《番外：Cloud-Init》<a href="https://c4pr1c3.gitee.io/linuxsysadmin/cloud-init.md" target="_blank"> (https://c4pr1c3.gitee.io/linuxsysadmin/cloud-init.md)</a>
+- 《genisoimage and xorrisofs》<a href="https://wiki.debian.org/genisoimage" target="_blank">  (https://wiki.debian.org/genisoimage)</a>
