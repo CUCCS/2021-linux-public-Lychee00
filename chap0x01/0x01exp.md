@@ -159,13 +159,13 @@ scp [用户名@]远程主机IP地址:源文件 [本地路径]
 - 在手动修改yaml文件并保存后应执行``netplan apply``命令应用修改,否则将看不到刚才的修改内容。
 
 ## 五、参考文献
-- *ssh-keygen - Generate a New SSH Key* <a href="https://www.ssh.com/ssh/keygen/"> （https://www.ssh.com/ssh/keygen/）</a>
-- *ssh-copy-id* <a href="https://www.ssh.com/ssh/copy-id">  (https://www.ssh.com/ssh/copy-id)</a>
-- 《ssh-keygen和ssh-copy-id实现免密登录远程主机》<a href="https://blog.csdn.net/feinifi/article/details/78213297" target="_blank">(https://blog.csdn.net/feinifi/article/details/78213297)</a>
-- 《sudo的介绍及基本用法》<a href="https://www.cnblogs.com/storyawine/p/13359393.html"> (https://www.cnblogs.com/storyawine/p/13359393.html)</a>
-- *SFTP File Transfer Protocol - get SFTP client & server*<a href="https://www.ssh.com/ssh/sftp/" target="_blank"> （https://www.ssh.com/ssh/sftp/）</a>
-- 《Mac如何使用SSH远程连接linux及使用SFTP进行文件上传、下载》<a href="https://lmlxj.blog.csdn.net/article/details/80839322?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.control&dist_request_id=&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.control" target="_blank"> (https://lmlxj.blog.csdn.net/article/details/80839322?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.control&dist_request_id=&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.control)</a>
-- *InstallCDCustomization*<a href="https://help.ubuntu.com/community/InstallCDCustomization" target="_blank"> (https://help.ubuntu.com/community/InstallCDCustomization)</a>
-- 《老师提供的可用配置文件user-data》<a href="https://c4pr1c3.gitee.io/linuxsysadmin/exp/chap0x01/cd-rom/nocloud/user-data" target="_blank"> (https://c4pr1c3.gitee.io/linuxsysadmin/exp/chap0x01/cd-rom/nocloud/user-data)</a>
-- 《番外：Cloud-Init》<a href="https://c4pr1c3.gitee.io/linuxsysadmin/cloud-init.md" target="_blank"> (https://c4pr1c3.gitee.io/linuxsysadmin/cloud-init.md)</a>
-- 《genisoimage and xorrisofs》<a href="https://wiki.debian.org/genisoimage" target="_blank">  (https://wiki.debian.org/genisoimage)</a>
+- [ssh-keygen - Generate a New SSH Key](https://www.ssh.com/ssh/keygen/)
+- [ssh-copy-id](https://www.ssh.com/ssh/copy-id)
+- [ssh-keygen和ssh-copy-id实现免密登录远程主机](https://blog.csdn.net/feinifi/article/details/78213297)
+- [sudo的介绍及基本用法](https://www.cnblogs.com/storyawine/p/13359393.html)
+- [SFTP File Transfer Protocol - get SFTP client & server](https://www.ssh.com/ssh/sftp/)
+- [Mac如何使用SSH远程连接linux及使用SFTP进行文件上传、下载](https://lmlxj.blog.csdn.net/article/details/80839322?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.control&dist_request_id=&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.control)
+- [InstallCDCustomization](https://help.ubuntu.com/community/InstallCDCustomization)
+- [老师提供的可用配置文件user-data](https://c4pr1c3.gitee.io/linuxsysadmin/exp/chap0x01/cd-rom/nocloud/user-data)
+- [第八章番外：Cloud-Init](https://c4pr1c3.gitee.io/linuxsysadmin/cloud-init.md)
+- [genisoimage and xorrisofs](https://wiki.debian.org/genisoimage)
