@@ -36,10 +36,12 @@
     - 可视模式(visual-mode)：通过``v``进入，可选区文本
     - 正常模式(normal-mode)：浏览、修改文本等
     - 选择模式(Select-mode)：在visual模式下``Ctrl+G``进入和退出模式，直接输入文字会进入inster模式并替换内容
+    - 替换模式（replace-mode）：通过``R``进入，``ESC``退出
     - EX模式(Ex-mode)：``ex``进入，``:vi``离开
     - 命令行模式(Command line mode)：``\``,``?``,``!``,``:``等
 - **Normal模式下，从当前行开始，一次向下移动光标10行的操作方法？如何快速移动到文件开始行和结束行？如何快速跳转到文件中的第N行？**
     - 向下移动光标10行：``10j``
+    - 向下移动n行：``Nj``
     - 移动到文件开始行：``gg``or``1G``
     - 移动到文件结束行：``G``
     - 跳转到文件第N行：``Ngg``or``NG``
@@ -117,7 +119,7 @@
         - ``:help i_<shortcut>``查询insert模式下的快捷键；
         - ``:help c_<shortcut>``查询command-line模式下的快捷键；
         - ``:help v_<shortcut>``查询visual模式下的快捷键；
-    - 在两个不同的分屏窗口中移动光标：``(Ctrl+W)+W``
+    - 在两个不同的分屏窗口中移动光标：``(Ctrl+W)+W`` or    ``set mouse=a``开启vim鼠标模式，通过鼠标直接改变分屏窗口大小切换不同分屏窗口选中状态。
 
 ## 五、参考文献
 - [vimtutor教程(双语版)](https://blog.csdn.net/zhaoyu106/article/details/72896216)
