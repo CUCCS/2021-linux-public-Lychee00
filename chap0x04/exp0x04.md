@@ -131,7 +131,10 @@ Proportional compressing sharefood.svg -- down.
 
 ## 六、参考资料
 - [Linux wget命令详解 wget下载工具用法详解](https://blog.csdn.net/qq_31705033/article/details/84728174)
+- [ImageMagick官方文档](https://imagemagick.org/)
 - [linux命令--查找与统计（grep、awk、sort、uniq、wc）](https://blog.csdn.net/hshuihui/article/details/77915398)
+- [awk 入门教程](http://www.ruanyifeng.com/blog/2018/11/awk.html)
+- [awk命令](https://man.linuxde.net/awk)
+- [持续集成服务 Travis CI 教程](http://www.ruanyifeng.com/blog/2017/12/travis_ci_tutorial.html)
 - [CUCCS/linux-2019-DcmTruman](https://github.com/CUCCS/linux-2019-DcmTruman/tree/0x04)
 - [CUCCS/linux-2020-WOC-BUG](https://github.com/CUCCS/linux-2020-WOC-BUG/tree/0x04/0x04)
-
