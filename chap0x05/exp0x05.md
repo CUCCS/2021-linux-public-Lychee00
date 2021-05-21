@@ -1,9 +1,8 @@
 # 实验5 Web 服务器的搭建
 ## 实验环境
-- **虚拟机环境**
-Ubuntu 20.04 Server
-
-- **软件环境**
+- MacOS Catalina 10.15.7
+- Ubuntu 20.04 Server
+- 软件环境
     - Nginx
     - VeryNginx
     - WordCompress 4.7
@@ -317,6 +316,7 @@ systemctl restart nginx.service
 - Frequency Limit设置
 ![](./img/limit_frequency.png)
 - 设置Response
+![](./img/fast_resp.png)
 - 使用ab压力测试工具
     - 访问wp.sec.cuc.edu.cn200次，180次失败了，拦截生效
 ![](./img/failed.png)
@@ -325,6 +325,7 @@ systemctl restart nginx.service
 - Matcher
 ![](./img/curl_matcher.png)
 - Filter
+![](./img/curl_filter.png)
 - Response
 ![](./img/curl_resp.png)
 - 结果
