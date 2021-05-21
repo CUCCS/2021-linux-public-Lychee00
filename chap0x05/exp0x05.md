@@ -333,7 +333,11 @@ systemctl restart nginx.service
     - 禁止后
     ![](./img/curl_after_filter.png)
 ##### 在不升级Wordpress版本的情况下，通过定制VeryNginx的访问控制策略规则，热修复WordPress < 4.7.1 - Username Enumeration
-- 过滤后
+- Matcher
+![](./img/json_matcher.png)
+- Filter
+![](./img/json_filter.png)
+- 结果
 ![](./img/hot_filter.png)
 
 ### 三、参考文档
